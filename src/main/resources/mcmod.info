@@ -1,0 +1,16 @@
+[
+{
+  "modid": "underwaterrails",
+  "name": "Underwater Rails",
+  "description": "Made for Modjam 5 adds several new rail types and tools intended for use underwater.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Hennamann"],
+  "credits": "Modjam community, MMD, Darkguardsman and a whole lot of other peeps!",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
