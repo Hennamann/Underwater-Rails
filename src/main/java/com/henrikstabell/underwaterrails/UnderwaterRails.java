@@ -1,6 +1,7 @@
 package com.henrikstabell.underwaterrails;
 
-import com.henrikstabell.underwaterrails.block.rail.BlockUnderwaterRail;
+import com.henrikstabell.underwaterrails.block.rail.BlockAdvancedUnderwaterRail;
+import com.henrikstabell.underwaterrails.block.rail.BlockBasicUnderwaterRail;
 import com.henrikstabell.underwaterrails.proxy.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -30,7 +31,8 @@ public class UnderwaterRails
 
     public static Logger logger;
 
-    public static final Block UNDER_WATER_RAIL = new BlockUnderwaterRail();
+    public static final Block BLOCK_BASIC_UNDERWATER_RAIL = new BlockBasicUnderwaterRail();
+    public static final Block BLOCK_ADVANCED_UNDERWATER_RAIL = new BlockAdvancedUnderwaterRail();
 
     @Mod.Instance(MODID)
     public static UnderwaterRails INSTANCE;
@@ -53,13 +55,15 @@ public class UnderwaterRails
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
-        event.getRegistry().register(UNDER_WATER_RAIL);
+        event.getRegistry().register(BLOCK_BASIC_UNDERWATER_RAIL);
+        event.getRegistry().register(BLOCK_ADVANCED_UNDERWATER_RAIL);
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
-        event.getRegistry().register(new ItemBlock(UNDER_WATER_RAIL).setRegistryName(UNDER_WATER_RAIL.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(BLOCK_BASIC_UNDERWATER_RAIL).setRegistryName(BLOCK_BASIC_UNDERWATER_RAIL.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(BLOCK_ADVANCED_UNDERWATER_RAIL).setRegistryName(BLOCK_ADVANCED_UNDERWATER_RAIL.getRegistryName()));
     }
 
     @SubscribeEvent

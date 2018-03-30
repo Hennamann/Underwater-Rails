@@ -16,14 +16,14 @@ import net.minecraft.util.Rotation;
  * See The repos LICENSE.MD file for what you can and can't do with the code.
  * Created by Hennamann(Ole Henrik Stabell) on 30/03/2018.
  */
-public class BlockUnderwaterRail extends BlockRail {
+public class BlockBasicUnderwaterRail extends BlockRail {
 
     public static final PropertyEnum<EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class);
 
-    public BlockUnderwaterRail() {
+    public BlockBasicUnderwaterRail() {
         super();
-        this.setRegistryName(UnderwaterRails.MODID + ":" + "underwater_rail");
-        this.setUnlocalizedName(UnderwaterRails.MODID + ":" + "underwater_rail");
+        this.setRegistryName(UnderwaterRails.MODID + ":" + "basic_underwater_rail");
+        this.setUnlocalizedName(UnderwaterRails.MODID + ":" + "basic_underwater_rail");
         this.setCreativeTab(CreativeTabs.TRANSPORTATION);
         this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.NORTH_SOUTH));
     }

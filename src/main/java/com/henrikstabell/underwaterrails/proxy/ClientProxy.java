@@ -13,6 +13,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void doModelLoading() {
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(UnderwaterRails.UNDER_WATER_RAIL), 0, new ModelResourceLocation(UnderwaterRails.UNDER_WATER_RAIL.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(UnderwaterRails.BLOCK_BASIC_UNDERWATER_RAIL), 0, new ModelResourceLocation(UnderwaterRails.BLOCK_BASIC_UNDERWATER_RAIL.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(UnderwaterRails.BLOCK_ADVANCED_UNDERWATER_RAIL), 0, new ModelResourceLocation(UnderwaterRails.BLOCK_ADVANCED_UNDERWATER_RAIL.getRegistryName(), "inventory"));
     }
 }
