@@ -170,3 +170,5 @@ gradle-app.setting
 .idea
 *.iml
 ModJam-5.iml
+run
+classes
