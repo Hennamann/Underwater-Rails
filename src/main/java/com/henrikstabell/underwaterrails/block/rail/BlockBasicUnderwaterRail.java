@@ -190,6 +190,6 @@ public class BlockBasicUnderwaterRail extends BlockRail {
 
     @Override
     public Material getMaterial(IBlockState state) {
-        return Material.ANVIL; // Set to ANVIL because it has a immovable MobilityFlag, which stops it from being destroyed by water.
+        return Material.PORTAL; // Set to PORTAL because it has a immovable MobilityFlag, which stops it from being destroyed by water. (Not ANVIL because this rail should not prevent drowning.)
     }
 }

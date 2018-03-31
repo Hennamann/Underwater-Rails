@@ -3,6 +3,7 @@ package com.henrikstabell.underwaterrails.block.rail;
 import com.henrikstabell.underwaterrails.UnderwaterRails;
 import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
+import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -31,17 +32,6 @@ public class BlockAdvancedUnderwaterRail extends BlockRail {
         this.setUnlocalizedName(UnderwaterRails.MODID + ":" + "advanced_underwater_rail");
         this.setCreativeTab(CreativeTabs.TRANSPORTATION);
         this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.NORTH_SOUTH));
-    }
-
-    @Nullable
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return new AxisAlignedBB(0, 0, 0, 1, 1.5, 1);
     }
 
     public IProperty<BlockRailBase.EnumRailDirection> getShapeProperty()
@@ -206,6 +196,6 @@ public class BlockAdvancedUnderwaterRail extends BlockRail {
 
     @Override
     public Material getMaterial(IBlockState state) {
-        return Material.ANVIL; // Set to ANVIL because it has a immovable MobilityFlag, which stops it from being destroyed by water.
+        return Material.ANVIL; // Set to the ANVIL material with the immovable MobilityFlag, which stops it from being destroyed by water.
     }
 }

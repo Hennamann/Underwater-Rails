@@ -4,10 +4,19 @@ import com.henrikstabell.underwaterrails.block.rail.BlockAdvancedUnderwaterRail;
 import com.henrikstabell.underwaterrails.block.rail.BlockBasicUnderwaterRail;
 import com.henrikstabell.underwaterrails.proxy.CommonProxy;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.ActiveRenderInfo;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.item.EntityMinecartEmpty;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -70,5 +79,13 @@ public class UnderwaterRails
     public static void registerAllModels(ModelRegistryEvent event)
     {
         proxy.doModelLoading();
+    }
+
+    @SubscribeEvent
+    public static void onMinecartDrownDamage(LivingHurtEvent event) {
+        if (event.getSource() == DamageSource.DROWN && event.getEntityLiving().getRidingEntity() instanceof EntityMinecart && event.getEntityLiving().getRidingEntity().isInsideOfMaterial(Material.ANVIL)) {
+            event.getEntity().setAir(300);
+            event.setCanceled(true);
+        }
     }
 }

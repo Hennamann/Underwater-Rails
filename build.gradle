@@ -75,3 +75,17 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+
+    jar {
+        classifier = 'universal'
+    }
+
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.allSource
+        classifier = 'sources'
+    }
+
+    task deobfJar(type: Jar) {
+        from(sourceSets.main.output)
+        classifier = 'dev'
+    }
