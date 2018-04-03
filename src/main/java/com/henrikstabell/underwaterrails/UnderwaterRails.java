@@ -4,13 +4,8 @@ import com.henrikstabell.underwaterrails.block.rail.BlockAdvancedUnderwaterRail;
 import com.henrikstabell.underwaterrails.block.rail.BlockBasicUnderwaterRail;
 import com.henrikstabell.underwaterrails.proxy.CommonProxy;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.item.EntityMinecartEmpty;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.DamageSource;
@@ -62,15 +57,13 @@ public class UnderwaterRails
     public void postInit(FMLPostInitializationEvent event) {}
 
     @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event)
-    {
+    public static void registerBlocks(RegistryEvent.Register<Block> event) {
         event.getRegistry().register(BLOCK_BASIC_UNDERWATER_RAIL);
         event.getRegistry().register(BLOCK_ADVANCED_UNDERWATER_RAIL);
     }
 
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event)
-    {
+    public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().register(new ItemBlock(BLOCK_BASIC_UNDERWATER_RAIL).setRegistryName(BLOCK_BASIC_UNDERWATER_RAIL.getRegistryName()));
         event.getRegistry().register(new ItemBlock(BLOCK_ADVANCED_UNDERWATER_RAIL).setRegistryName(BLOCK_ADVANCED_UNDERWATER_RAIL.getRegistryName()));
     }

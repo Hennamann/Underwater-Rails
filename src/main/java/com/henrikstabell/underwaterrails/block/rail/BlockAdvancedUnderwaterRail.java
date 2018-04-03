@@ -3,7 +3,9 @@ package com.henrikstabell.underwaterrails.block.rail;
 import com.henrikstabell.underwaterrails.UnderwaterRails;
 import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -15,6 +17,7 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
@@ -28,10 +31,17 @@ public class BlockAdvancedUnderwaterRail extends BlockRail {
 
     public BlockAdvancedUnderwaterRail() {
         super();
-        this.setRegistryName(UnderwaterRails.MODID + ":" + "advanced_underwater_rail");
+        this.setRegistryName("advanced_underwater_rail");
         this.setUnlocalizedName(UnderwaterRails.MODID + ":" + "advanced_underwater_rail");
         this.setCreativeTab(CreativeTabs.TRANSPORTATION);
+        this.setHardness(0.7F);
+        this.setSoundType(SoundType.GLASS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.NORTH_SOUTH));
+    }
+
+    @Override
+    public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state) {
+        this.dropBlockAsItem(worldIn, pos, state, 0);
     }
 
     public IProperty<BlockRailBase.EnumRailDirection> getShapeProperty()
@@ -197,5 +207,10 @@ public class BlockAdvancedUnderwaterRail extends BlockRail {
     @Override
     public Material getMaterial(IBlockState state) {
         return Material.ANVIL; // Set to the ANVIL material with the immovable MobilityFlag, which stops it from being destroyed by water.
+    }
+
+    @Override
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return MapColor.AIR;
     }
 }
