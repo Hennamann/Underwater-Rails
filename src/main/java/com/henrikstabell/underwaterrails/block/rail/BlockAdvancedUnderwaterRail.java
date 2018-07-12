@@ -9,9 +9,11 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -212,5 +214,17 @@ public class BlockAdvancedUnderwaterRail extends BlockRail {
     @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         return MapColor.AIR;
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess access, IBlockState state, BlockPos pos, EnumFacing side) {
+        if (access.getBlockState(pos.offset(side)).getMaterial().isLiquid()) {
+            return BlockFaceShape.SOLID;
+        } else return BlockFaceShape.UNDEFINED;
+    }
+
+    @Override
+    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess access, BlockPos pos, EnumFacing side) {
+        return access.getBlockState(pos.offset(side)).getMaterial().isLiquid() && access.getBlockState(pos.up()).getMaterial().isLiquid();
     }
 }
