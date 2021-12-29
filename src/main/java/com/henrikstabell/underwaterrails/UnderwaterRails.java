@@ -2,83 +2,79 @@ package com.henrikstabell.underwaterrails;
 
 import com.henrikstabell.underwaterrails.block.rail.BlockAdvancedUnderwaterRail;
 import com.henrikstabell.underwaterrails.block.rail.BlockBasicUnderwaterRail;
-import com.henrikstabell.underwaterrails.proxy.CommonProxy;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.block.material.MaterialColor;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.entity.item.minecart.MinecartEntity;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
  * See The repos LICENSE.MD file for what you can and can't do with the code.
  * Created by Hennamann(Ole Henrik Stabell) on 30/03/2018.
  */
-@Mod(modid = UnderwaterRails.MODID, name = UnderwaterRails.NAME, version = UnderwaterRails.VERSION)
-@Mod.EventBusSubscriber
+@Mod(UnderwaterRails.MODID)
+@Mod.EventBusSubscriber(modid = UnderwaterRails.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class UnderwaterRails
 {
     public static final String MODID = "underwaterrails";
     public static final String NAME = "Underwater Rails";
     public static final String VERSION = "1.0.0";
 
-    public static Logger logger;
+    private static final Logger LOGGER = LogManager.getLogger();
 
-    public static final Block BLOCK_BASIC_UNDERWATER_RAIL = new BlockBasicUnderwaterRail();
-    public static final Block BLOCK_ADVANCED_UNDERWATER_RAIL = new BlockAdvancedUnderwaterRail();
+    public static  Block BLOCK_BASIC_UNDERWATER_RAIL;
+    public static  Block BLOCK_ADVANCED_UNDERWATER_RAIL;
 
-    @Mod.Instance(MODID)
-    public static UnderwaterRails INSTANCE;
-
-    @SidedProxy(clientSide = "com.henrikstabell.underwaterrails.proxy.ClientProxy", serverSide = "com.henrikstabell.underwaterrails.proxy.CommonProxy")
-    public static CommonProxy proxy;
-
-
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        logger = event.getModLog();
-    }
-
-    @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {}
-
-    @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event) {}
+    public static  BlockItem ITEM_BASIC_UNDERWATER_RAIL;
+    public static  BlockItem ITEM_ADVANCED_UNDERWATER_RAIL;
 
     @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        event.getRegistry().register(BLOCK_BASIC_UNDERWATER_RAIL);
-        event.getRegistry().register(BLOCK_ADVANCED_UNDERWATER_RAIL);
+    public static void onBlocksRegistration(final RegistryEvent.Register<Block> blockRegisterEvent) {
+        BLOCK_BASIC_UNDERWATER_RAIL = (BlockBasicUnderwaterRail)(new BlockBasicUnderwaterRail(AbstractBlock.Properties.of(Material.HEAVY_METAL, MaterialColor.NONE).noCollission().strength(0.7F).sound(SoundType.METAL)).setRegistryName(MODID, "basic_underwater_rail"));
+        blockRegisterEvent.getRegistry().register(BLOCK_BASIC_UNDERWATER_RAIL);
+
+        BLOCK_ADVANCED_UNDERWATER_RAIL = (BlockAdvancedUnderwaterRail)(new BlockAdvancedUnderwaterRail(AbstractBlock.Properties.of(Material.HEAVY_METAL, MaterialColor.NONE).noCollission().strength(0.5F).sound(SoundType.METAL)).setRegistryName(MODID, "advanced_underwater_rail"));
+        blockRegisterEvent.getRegistry().register(BLOCK_ADVANCED_UNDERWATER_RAIL);
     }
 
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().register(new ItemBlock(BLOCK_BASIC_UNDERWATER_RAIL).setRegistryName(BLOCK_BASIC_UNDERWATER_RAIL.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(BLOCK_ADVANCED_UNDERWATER_RAIL).setRegistryName(BLOCK_ADVANCED_UNDERWATER_RAIL.getRegistryName()));
+    public static void onItemsRegistration(final RegistryEvent.Register<Item> itemRegisterEvent) {
+        Item.Properties ITEM_BASIC_UNDERWATER_RAIL_PROPERTIES = new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION);
+        ITEM_BASIC_UNDERWATER_RAIL = new BlockItem(BLOCK_BASIC_UNDERWATER_RAIL, ITEM_BASIC_UNDERWATER_RAIL_PROPERTIES);
+        ITEM_BASIC_UNDERWATER_RAIL.setRegistryName(BLOCK_BASIC_UNDERWATER_RAIL.getRegistryName());
+        itemRegisterEvent.getRegistry().register(ITEM_BASIC_UNDERWATER_RAIL);
+
+        Item.Properties ITEM_ADVANCED_UNDERWATER_RAIL_PROPERTIES = new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION);
+        ITEM_ADVANCED_UNDERWATER_RAIL = new BlockItem(BLOCK_ADVANCED_UNDERWATER_RAIL, ITEM_ADVANCED_UNDERWATER_RAIL_PROPERTIES);
+        ITEM_ADVANCED_UNDERWATER_RAIL.setRegistryName(BLOCK_ADVANCED_UNDERWATER_RAIL.getRegistryName());
+        itemRegisterEvent.getRegistry().register(ITEM_ADVANCED_UNDERWATER_RAIL);
     }
 
+    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public static void registerAllModels(ModelRegistryEvent event)
-    {
-        proxy.doModelLoading();
-    }
-
-    @SubscribeEvent
-    public static void onMinecartDrownDamage(LivingHurtEvent event) {
-        if (event.getSource() == DamageSource.DROWN && event.getEntityLiving().getRidingEntity() instanceof EntityMinecart && event.getEntityLiving().getRidingEntity().isInsideOfMaterial(Material.ANVIL)) {
-            event.getEntity().setAir(300);
-            event.setCanceled(true);
-        }
+    public static void onClientSetupEvent(FMLClientSetupEvent event) {
+        RenderTypeLookup.setRenderLayer(UnderwaterRails.BLOCK_BASIC_UNDERWATER_RAIL, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(UnderwaterRails.BLOCK_ADVANCED_UNDERWATER_RAIL, RenderType.cutout());
     }
 }

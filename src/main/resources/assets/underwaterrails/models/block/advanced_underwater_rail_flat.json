@@ -1,9 +1,9 @@
 {
-	"parent": "block/block",
+	"parent": "minecraft:block/block",
 	"ambientocclusion": false,
 	"textures": {
-		"0": "blocks/glass",
-		"particle": "blocks/rail_normal"
+		"0": "minecraft:block/glass",
+		"particle": "minecraft:block/rail"
 	},
 	"elements": [
 		{

@@ -7,19 +7,16 @@
   "key": {
     "R": [
       {
-        "item": "minecraft:rail",
-        "data": 0
+        "item": "minecraft:rail"
       }
     ],
     "S": [
       {
-        "item": "minecraft:slime_ball",
-        "data": 0
+        "item": "minecraft:slime_ball"
       }
     ]
   },
   "result": {
-    "item": "underwaterrails:basic_underwater_rail",
-    "data": 0
+    "item": "underwaterrails:basic_underwater_rail"
   }
 }

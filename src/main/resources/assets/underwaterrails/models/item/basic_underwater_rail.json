@@ -1,5 +1,5 @@
 {
-  "parent": "block/normal_rail_flat",
+  "parent": "minecraft:block/rail",
   "display": {
     "gui": {
       "rotation": [ 30, 225, 0 ],
