@@ -2,6 +2,9 @@ package com.henrikstabell.underwaterrails.block.rail;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
@@ -10,6 +13,9 @@ import net.minecraft.state.properties.RailShape;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 /**
@@ -20,9 +26,19 @@ public class BlockAdvancedUnderwaterRail extends AbstractRailBlock {
 
     private static final EnumProperty<RailShape> SHAPE = BlockStateProperties.RAIL_SHAPE;
 
+    protected static final VoxelShape CUSTOM_FLAT_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0F, 16.0D);
+    protected static final VoxelShape CUSTOM_HALF_BLOCK_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0F, 16.0D);
+
     public BlockAdvancedUnderwaterRail(Properties properties) {
         super(false, properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(SHAPE, RailShape.NORTH_SOUTH));
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos, ISelectionContext selectionContext) {
+        RailShape railshape = blockState.is(this) ? blockState.getValue(this.getShapeProperty()) : null;
+        RailShape railShape2 = blockState.is(this) ? getRailDirection(blockState, blockReader, blockPos, null) : null;
+        return railshape != null && railshape.isAscending() ? CUSTOM_HALF_BLOCK_AABB : CUSTOM_FLAT_AABB;
     }
 
     protected void updateState(BlockState blockState, World world, BlockPos blockPos, Block block) {
@@ -155,6 +171,7 @@ public class BlockAdvancedUnderwaterRail extends AbstractRailBlock {
         return super.mirror(blockState, mirror);
     }
 
+    @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(SHAPE);
     }
