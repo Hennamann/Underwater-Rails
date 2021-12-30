@@ -2,7 +2,7 @@
 	"ambientocclusion": false,
 	"textures": {
 		"0": "minecraft:block/glass",
-		"1": "underwaterrails:block/advanced_underwater_rail_turned_top",
+		"1": "underwaterrails:block/advanced_underwater_rail_curved_top",
 		"particle": "minecraft:block/rail_corner"
 	},
 	"elements": [

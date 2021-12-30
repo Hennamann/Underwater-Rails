@@ -1,7 +1,6 @@
 package com.henrikstabell.underwaterrails.block.rail;
 
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.state.BooleanProperty;
@@ -10,42 +9,33 @@ import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.RailShape;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
  * See The repos LICENSE.MD file for what you can and can't do with the code.
  * Created by Hennamann(Ole Henrik Stabell) on 30/03/2018.
  */
-public class BlockAdvancedUnderwaterRail extends AbstractRailBlock {
+public class BlockAdvancedUnderwaterRail extends AbstractRailBlock implements  IWaterLoggable {
 
     private static final EnumProperty<RailShape> SHAPE = BlockStateProperties.RAIL_SHAPE;
-
-    protected static final VoxelShape CUSTOM_FLAT_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0F, 16.0D);
-    protected static final VoxelShape CUSTOM_HALF_BLOCK_AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0F, 16.0D);
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public BlockAdvancedUnderwaterRail(Properties properties) {
         super(false, properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(SHAPE, RailShape.NORTH_SOUTH));
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos, ISelectionContext selectionContext) {
-        RailShape railshape = blockState.is(this) ? blockState.getValue(this.getShapeProperty()) : null;
-        RailShape railShape2 = blockState.is(this) ? getRailDirection(blockState, blockReader, blockPos, null) : null;
-        return railshape != null && railshape.isAscending() ? CUSTOM_HALF_BLOCK_AABB : CUSTOM_FLAT_AABB;
+        this.registerDefaultState(this.stateDefinition.any().setValue(SHAPE, RailShape.NORTH_SOUTH).setValue(WATERLOGGED, Boolean.valueOf(false)));
     }
 
     protected void updateState(BlockState blockState, World world, BlockPos blockPos, Block block) {
         if (block.defaultBlockState().isSignalSource() && (new RailState(world, blockPos, blockState)).countPotentialConnections() == 3) {
             this.updateDir(world, blockPos, blockState, false);
         }
-
     }
 
     public Property<RailShape> getShapeProperty() {
@@ -171,8 +161,16 @@ public class BlockAdvancedUnderwaterRail extends AbstractRailBlock {
         return super.mirror(blockState, mirror);
     }
 
+    public FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+    }
+
+    public boolean isUnderWater(BlockState state) {
+        return state.getValue(WATERLOGGED);
+    }
+
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(SHAPE);
+        builder.add(SHAPE, WATERLOGGED);
     }
 }

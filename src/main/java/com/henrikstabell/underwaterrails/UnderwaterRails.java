@@ -1,6 +1,7 @@
 package com.henrikstabell.underwaterrails;
 
 import com.henrikstabell.underwaterrails.block.rail.BlockAdvancedUnderwaterRail;
+import com.henrikstabell.underwaterrails.block.rail.BlockBasicPoweredUnderwaterRail;
 import com.henrikstabell.underwaterrails.block.rail.BlockBasicUnderwaterRail;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -43,16 +44,21 @@ public class UnderwaterRails
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static  Block BLOCK_BASIC_UNDERWATER_RAIL;
-    public static  Block BLOCK_ADVANCED_UNDERWATER_RAIL;
+    public static Block BLOCK_BASIC_UNDERWATER_RAIL;
+    public static Block BLOCK_ADVANCED_UNDERWATER_RAIL;
+    public static Block BLOCK_BASIC_POWERED_UNDERWATER_RAIL;
 
-    public static  BlockItem ITEM_BASIC_UNDERWATER_RAIL;
-    public static  BlockItem ITEM_ADVANCED_UNDERWATER_RAIL;
+    public static BlockItem ITEM_BASIC_UNDERWATER_RAIL;
+    public static BlockItem ITEM_ADVANCED_UNDERWATER_RAIL;
+    public static BlockItem ITEM_BASIC_POWERED_UNDERWATER_RAIL;
 
     @SubscribeEvent
     public static void onBlocksRegistration(final RegistryEvent.Register<Block> blockRegisterEvent) {
         BLOCK_BASIC_UNDERWATER_RAIL = (BlockBasicUnderwaterRail)(new BlockBasicUnderwaterRail(AbstractBlock.Properties.of(Material.HEAVY_METAL, MaterialColor.NONE).noCollission().strength(0.7F).sound(SoundType.METAL)).setRegistryName(MODID, "basic_underwater_rail"));
         blockRegisterEvent.getRegistry().register(BLOCK_BASIC_UNDERWATER_RAIL);
+
+        BLOCK_BASIC_POWERED_UNDERWATER_RAIL = (BlockBasicPoweredUnderwaterRail)(new BlockBasicPoweredUnderwaterRail(AbstractBlock.Properties.of(Material.HEAVY_METAL, MaterialColor.NONE).noCollission().strength(0.7F).sound(SoundType.METAL)).setRegistryName(MODID, "basic_powered_underwater_rail"));
+        blockRegisterEvent.getRegistry().register(BLOCK_BASIC_POWERED_UNDERWATER_RAIL);
 
         BLOCK_ADVANCED_UNDERWATER_RAIL = (BlockAdvancedUnderwaterRail)(new BlockAdvancedUnderwaterRail(AbstractBlock.Properties.of(Material.HEAVY_METAL, MaterialColor.NONE).noCollission().strength(0.5F).sound(SoundType.METAL)).setRegistryName(MODID, "advanced_underwater_rail"));
         blockRegisterEvent.getRegistry().register(BLOCK_ADVANCED_UNDERWATER_RAIL);
@@ -65,6 +71,11 @@ public class UnderwaterRails
         ITEM_BASIC_UNDERWATER_RAIL.setRegistryName(BLOCK_BASIC_UNDERWATER_RAIL.getRegistryName());
         itemRegisterEvent.getRegistry().register(ITEM_BASIC_UNDERWATER_RAIL);
 
+        Item.Properties ITEM_BASIC_POWERED_UNDERWATER_RAIL_PROPERTIES = new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION);
+        ITEM_BASIC_UNDERWATER_RAIL = new BlockItem(BLOCK_BASIC_POWERED_UNDERWATER_RAIL, ITEM_BASIC_POWERED_UNDERWATER_RAIL_PROPERTIES);
+        ITEM_BASIC_POWERED_UNDERWATER_RAIL.setRegistryName(MODID, "basic_powered_underwater_rail");
+        itemRegisterEvent.getRegistry().register(ITEM_BASIC_POWERED_UNDERWATER_RAIL);
+
         Item.Properties ITEM_ADVANCED_UNDERWATER_RAIL_PROPERTIES = new Item.Properties().tab(ItemGroup.TAB_TRANSPORTATION);
         ITEM_ADVANCED_UNDERWATER_RAIL = new BlockItem(BLOCK_ADVANCED_UNDERWATER_RAIL, ITEM_ADVANCED_UNDERWATER_RAIL_PROPERTIES);
         ITEM_ADVANCED_UNDERWATER_RAIL.setRegistryName(BLOCK_ADVANCED_UNDERWATER_RAIL.getRegistryName());
@@ -76,5 +87,6 @@ public class UnderwaterRails
     public static void onClientSetupEvent(FMLClientSetupEvent event) {
         RenderTypeLookup.setRenderLayer(UnderwaterRails.BLOCK_BASIC_UNDERWATER_RAIL, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(UnderwaterRails.BLOCK_ADVANCED_UNDERWATER_RAIL, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(UnderwaterRails.BLOCK_BASIC_POWERED_UNDERWATER_RAIL, RenderType.cutout());
     }
 }
