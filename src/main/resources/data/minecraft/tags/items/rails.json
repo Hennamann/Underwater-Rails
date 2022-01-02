@@ -1,13 +1,9 @@
 {
   "replace": false,
   "values": [
-    "underwaterrails:basic_underwater_rail",
-    "underwaterrails:basic_powered_underwater_rail",
-    "underwaterrails:basic_detector_underwater_rail",
-    "underwaterrails:basic_activator_underwater_rail",
-    "underwaterrails:advanced_underwater_rail",
-    "underwaterrails:advanced_powered_underwater_rail",
-    "underwaterrails:advanced_detector_underwater_rail",
-    "underwaterrails:advanced_activator_underwater_rail"
+    "underwaterrails:underwater_rail",
+    "underwaterrails:powered_underwater_rail",
+    "underwaterrails:detector_underwater_rail",
+    "underwaterrails:activator_underwater_rail"
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "G G",
+    " R "  ],
+  "key": {
+    "R": [
+      {
+        "item": "minecraft:detector_rail"
+      }
+    ],
+    "G": [
+      {
+        "item": "minecraft:glass_pane"
+      }
+    ]
+  },
+  "result": {
+    "item": "underwaterrails:detector_underwater_rail"
+  }
+}

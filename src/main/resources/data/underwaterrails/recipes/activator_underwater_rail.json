@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "G G",
+    " R "  ],
+  "key": {
+    "R": [
+      {
+        "item": "minecraft:activator_rail"
+      }
+    ],
+    "G": [
+      {
+        "item": "minecraft:glass_pane"
+      }
+    ]
+  },
+  "result": {
+    "item": "underwaterrails:activator_underwater_rail"
+  }
+}

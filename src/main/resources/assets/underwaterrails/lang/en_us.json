@@ -1,10 +1,6 @@
 {
-  "block.underwaterrails.basic_underwater_rail": "Underwater Rail (Basic)",
-  "block.underwaterrails.basic_powered_underwater_rail": "Powered Underwater Rail (Basic)",
-  "block.underwaterrails.basic_detector_underwater_rail": "Detector Underwater Rail (Basic)",
-  "block.underwaterrails.basic_activator_underwater_rail": "Activator Underwater Rail (Basic)",
-  "block.underwaterrails.advanced_underwater_rail": "Underwater Rail (Advanced)",
-  "block.underwaterrails.advanced_powered_underwater_rail": "Powered Underwater Rail (Advanced)",
-  "block.underwaterrails.advanced_detector_underwater_rail": "Detector Underwater Rail (Advanced)",
-  "block.underwaterrails.advanced_activator_underwater_rail": "Activator Underwater Rail (Advanced)"
+  "block.underwaterrails.underwater_rail": "Underwater Rail",
+  "block.underwaterrails.powered_underwater_rail": "Powered Underwater Rail",
+  "block.underwaterrails.detector_underwater_rail": "Detector Underwater Rail",
+  "block.underwaterrails.activator_underwater_rail": "Activator Underwater Rail"
 }
