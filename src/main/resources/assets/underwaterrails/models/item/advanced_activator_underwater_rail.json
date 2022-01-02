@@ -1,5 +1,5 @@
 {
-  "parent": "underwaterrails:block/advanced_underwater_rail",
+  "parent": "underwaterrails:block/advanced_activator_underwater_rail",
   "display": {
     "gui": {
       "rotation": [ 30, 225, 0 ],

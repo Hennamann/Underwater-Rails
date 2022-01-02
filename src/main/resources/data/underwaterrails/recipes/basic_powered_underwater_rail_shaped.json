@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "RSR",
+    "RRR"  ],
+  "key": {
+    "R": [
+      {
+        "item": "minecraft:powered_rail"
+      }
+    ],
+    "S": [
+      {
+        "item": "minecraft:slime_ball"
+      }
+    ]
+  },
+  "result": {
+    "count": 8,
+    "item": "underwaterrails:basic_powered_underwater_rail"
+  }
+}

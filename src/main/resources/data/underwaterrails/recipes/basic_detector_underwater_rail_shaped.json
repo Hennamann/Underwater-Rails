@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "   ",
-    " S ",
-    " R "  ],
+    "RRR",
+    "RSR",
+    "RRR"  ],
   "key": {
     "R": [
       {
-        "item": "minecraft:rail"
+        "item": "minecraft:detector_rail"
       }
     ],
     "S": [
@@ -17,6 +17,7 @@
     ]
   },
   "result": {
-    "item": "underwaterrails:basic_underwater_rail"
+    "count": 8,
+    "item": "underwaterrails:basic_detector_underwater_rail"
   }
 }

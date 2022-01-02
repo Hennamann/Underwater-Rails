@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer1": "underwaterrails:misc/bubble_overlay",
-    "layer0": "minecraft:block/powered_rail"
+    "layer0": "minecraft:block/detector_rail"
   }
 }
