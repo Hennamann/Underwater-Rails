@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "   ",
-    " S ",
-    " R "  ],
+    "RRR",
+    "RSR",
+    "RRR"  ],
   "key": {
     "R": [
       {
@@ -20,6 +20,7 @@
   },
   "result": {
     "item": "underwaterrails:basic_underwater_rail",
-    "data": 0
+    "data": 0,
+    "count": 8
   }
 }
