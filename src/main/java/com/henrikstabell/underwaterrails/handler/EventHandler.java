@@ -5,6 +5,8 @@ import com.henrikstabell.underwaterrails.block.rail.IUnderwaterRail;
 import net.minecraft.entity.item.minecart.MinecartEntity;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,6 +23,7 @@ public class EventHandler {
             event.setCanceled(true);
         }
     }
+    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onRenderFogUnderwater(EntityViewRenderEvent.FogDensity event) {
         if (event.getInfo().getFluidInCamera().is(FluidTags.WATER))
@@ -30,6 +33,7 @@ public class EventHandler {
             }
     }
 
+    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onRenderFogColorUnderwater(EntityViewRenderEvent.FogColors event) {
         if (event.getInfo().getFluidInCamera().is(FluidTags.WATER))
