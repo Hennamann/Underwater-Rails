@@ -1,6 +1,6 @@
 # Underwater Rails
 
-![](https://media.forgecdn.net/attachments/419/958/underwaterrails.png)
+![Logo](https://media.forgecdn.net/attachments/419/958/underwaterrails.png)
 
 This mod was originally made for Modjam 5 (2018.1) but has since been updated!
 
