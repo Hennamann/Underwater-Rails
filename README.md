@@ -2,6 +2,8 @@
 
 ![](https://github.com/Hennamann/Underwater-Rails/blob/1.18.1/src/main/resources/underwaterrails.png?raw=true)
 
+![](https://cf.way2muchnoise.eu/underwater-rails.svg)
+
 This mod was originally made for Modjam 5 (2018.1) but has since been updated!
 
 
