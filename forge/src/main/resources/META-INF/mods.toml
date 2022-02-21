@@ -1,0 +1,37 @@
+modLoader = "javafml"
+loaderVersion = "[39,)"
+issueTrackerURL = "https://github.com/Hennamann/Underwater-Rails/issues"
+license = "MIT License"
+
+[[mods]]
+modId = "underwaterrails"
+version = "${version}"
+displayName = "Underwater Rails"
+authors = "Hennamann"
+credits="Modjam community, MMD, Darkguardsman and a whole lot of other peeps!"
+description = '''
+Adds rails that can be placed underwater.
+'''
+displayURL="https://www.curseforge.com/minecraft/mc-mods/underwater-rails"
+logoFile="underwaterrails.png"
+
+[[dependencies.underwaterrails]]
+modId = "forge"
+mandatory = true
+versionRange = "[39,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.underwaterrails]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.underwaterrails]]
+modId = "architectury"
+mandatory = true
+versionRange = "[3.7.22,)"
+ordering = "AFTER"
+side = "BOTH"

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "underwaterrails",
+  "version": "${version}",
+  "name": "Underwater Rails",
+  "description": "Adds rails that can be placed underwater.",
+  "authors": [
+    "Hennamann"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/underwater-rails",
+    "sources": "https://github.com/Hennamann/Underwater-Rails"
+  },
+  "license": "MIT License",
+  "icon": "underwaterrails.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.henrikstabell.underwaterrails.fabric.UnderwaterRailsFabric"
+    ],
+    "client": [
+      "com.henrikstabell.underwaterrails.fabric.UnderwaterRailsFabricClient"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.18.1",
+    "architectury": ">=3.7.22"
+  }
+}
