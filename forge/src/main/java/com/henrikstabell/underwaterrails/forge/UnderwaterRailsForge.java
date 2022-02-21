@@ -12,7 +12,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(UnderwaterRails.MODID)
-@Mod.EventBusSubscriber(modid = UnderwaterRails.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = UnderwaterRails.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class UnderwaterRailsForge {
     public UnderwaterRailsForge() {
         // Submit our event bus to let architectury register our content on the right time
@@ -20,12 +20,8 @@ public class UnderwaterRailsForge {
         UnderwaterRails.init();
     }
 
-    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onClientSetupEvent(FMLClientSetupEvent event) {
-        ItemBlockRenderTypes.setRenderLayer(UnderwaterRails.UNDERWATER_RAIL.get(), RenderType.cutoutMipped());
-        ItemBlockRenderTypes.setRenderLayer(UnderwaterRails.POWERED_UNDERWATER_RAIL.get(), RenderType.cutoutMipped());
-        ItemBlockRenderTypes.setRenderLayer(UnderwaterRails.DETECTOR_UNDERWATER_RAIL.get(), RenderType.cutoutMipped());
-        ItemBlockRenderTypes.setRenderLayer(UnderwaterRails.ACTIVATOR_UNDERWATER_RAIL.get(), RenderType.cutoutMipped());
+        UnderwaterRails.clientInit();
     }
 }

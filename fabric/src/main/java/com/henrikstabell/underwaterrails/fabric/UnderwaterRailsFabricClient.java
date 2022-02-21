@@ -9,9 +9,6 @@ public class UnderwaterRailsFabricClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        BlockRenderLayerMap.INSTANCE.putBlock(UnderwaterRails.UNDERWATER_RAIL.get(), RenderType.cutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(UnderwaterRails.POWERED_UNDERWATER_RAIL.get(), RenderType.cutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(UnderwaterRails.ACTIVATOR_UNDERWATER_RAIL.get(), RenderType.cutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(UnderwaterRails.DETECTOR_UNDERWATER_RAIL.get(), RenderType.cutoutMipped());
+        UnderwaterRails.clientInit();
     }
 }

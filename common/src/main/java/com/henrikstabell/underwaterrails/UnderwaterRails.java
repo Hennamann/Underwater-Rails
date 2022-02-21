@@ -10,9 +10,11 @@ import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.EntityEvent;
 import dev.architectury.event.events.common.PlayerEvent;
 import dev.architectury.registry.block.BlockProperties;
+import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registries;
 import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.tags.BlockTags;
@@ -67,5 +69,9 @@ public class UnderwaterRails {
         ITEMS.register();
 
         EventHandler.initEvents();
+    }
+
+    public static void clientInit() {
+        RenderTypeRegistry.register(RenderType.cutoutMipped(), UNDERWATER_RAIL.get(), POWERED_UNDERWATER_RAIL.get(), DETECTOR_UNDERWATER_RAIL.get(), ACTIVATOR_UNDERWATER_RAIL.get());
     }
 }
